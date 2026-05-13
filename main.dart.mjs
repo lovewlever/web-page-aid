@@ -392,6 +392,18 @@ class CompiledApp {
       _1305: () => typeof dartUseDateNowForTicks !== "undefined",
       _1306: () => 1000 * performance.now(),
       _1307: () => Date.now(),
+      _1308: () => {
+        // On browsers return `globalThis.location.href`
+        if (globalThis.location != null) {
+          return globalThis.location.href;
+        }
+        return null;
+      },
+      _1309: () => {
+        return typeof process != "undefined" &&
+               Object.prototype.toString.call(process) == "[object process]" &&
+               process.platform == "win32"
+      },
       _1310: () => new WeakMap(),
       _1311: (map, o) => map.get(o),
       _1312: (map, o, v) => map.set(o, v),
@@ -586,6 +598,7 @@ class CompiledApp {
       _1516: a => a.pop(),
       _1517: (a, i) => a.splice(i, 1),
       _1519: (a, s, e) => a.slice(s, e),
+      _1521: (a, b) => a == b ? 0 : (a > b ? 1 : -1),
       _1522: a => a.length,
       _1524: (a, i) => a[i],
       _1525: (a, i, v) => a[i] = v,
